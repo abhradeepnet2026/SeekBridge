@@ -1,8 +1,8 @@
-# SeekBridge 🌉
+# SeekBridge
 
 Minimalist bridge that turns the OpenCode CLI into a free OpenAI-compatible API for Hermes Agent.
 
-## ⚡ Quick Start
+## Quick Start
 
 1. **Install OpenCode CLI** (if not already installed).
 2. **Clone this repo:**
@@ -17,7 +17,7 @@ Minimalist bridge that turns the OpenCode CLI into a free OpenAI-compatible API 
 
 The script will automatically install dependencies and start the server.
 
-## 🛠 Hermes Agent Configuration
+## Hermes Agent Configuration
 
 Once the server is running, configure your Hermes Agent with these details:
 
@@ -25,7 +25,7 @@ Once the server is running, configure your Hermes Agent with these details:
 - **Model Name:** `opencode/deepseek-v4-flash-free`
 - **API Key:** (Leave blank or put any random string)
 
-## 🧠 How it Works
+## How it Works
 
 SeekBridge is a lightweight Flask server that:
 1. Receives standard OpenAI-format API requests.
