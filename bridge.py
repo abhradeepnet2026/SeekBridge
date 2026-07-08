@@ -14,9 +14,6 @@ def chat():
         
         user_query = [m["content"] for m in msgs if m["role"] == "user"][-1]
         
-        if not OPENC_PATH:
-            return jsonify({"error": "OpenCode CLI not found in PATH"}), 500
-
         res = subprocess.run(
             [OPENC_PATH, "run", "-m", model, user_query],
             capture_output=True, text=True, timeout=120
@@ -38,4 +35,4 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="127.0.0.1", port=8080)
