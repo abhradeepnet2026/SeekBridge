@@ -3,10 +3,10 @@ import subprocess, sys, os, shutil
 def ensure_deps():
     print("--- SeekBridge Setup ---")
     try:
-        import flask
+        import fastapi, uvicorn
     except ImportError:
-        print("[*] Installing Flask...")
-        subprocess.run([sys.executable, "-m", "pip", "install", "flask"], check=True)
+        print("[*] Installing FastAPI + Uvicorn...")
+        subprocess.run([sys.executable, "-m", "pip", "install", "fastapi", "uvicorn"], check=True)
 
 def verify_env():
     if not (shutil.which("opencode") or shutil.which("opencode.cmd")):
@@ -17,16 +17,15 @@ def verify_env():
 if __name__ == "__main__":
     ensure_deps()
     verify_env()
-    
-    # Resolve bridge.py relative to this setup.py file
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
     bridge_path = os.path.join(base_dir, "bridge.py")
-    
+
     print(f"\n[+] Starting bridge at http://127.0.0.1:8080/v1")
-    print(f"[*] Model: opencode/deepseek-v4-flash-free\n")
-    
+    print(f"[*] Model: opencode/deepseek-v4-flash-free")
+    print(f"[*] Streaming: enabled (SSE)\n")
+
     try:
-        # Run bridge.py from its own directory to ensure correct context
         subprocess.run([sys.executable, bridge_path], cwd=base_dir, check=True)
     except KeyboardInterrupt:
         print("\nStopping SeekBridge...")
